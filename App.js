@@ -13,11 +13,11 @@ import firebase from 'firebase';
 import reducers from './reducers';
 import WelcomeScreen from './screens/WelcomeScreen';
 import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
+import LoginScreen from './screens/Login';
 import LoadingScreen from './screens/LoadingScreen';
-import NewsScreen from './screens/NewsScreen';
-import BalanceScreen from './screens/BalanceScreen';
-import LogoutScreen from './screens/LogoutScreen'
+import HomeScreen from './screens/Home';
+import ListToiletScreen from './screens/ListToilet';
+import LogoutScreen from './screens/Logout'
 //import Test from './screens/Test';
 
 
@@ -45,8 +45,8 @@ export default class App extends React.Component {
       login_scr: { screen: LoginScreen },
       main_scr: {
           screen: TabNavigator({
-            news_scr: { screen: NewsScreen },
-            balance_scr: { screen: BalanceScreen },
+            news_scr: { screen: HomeScreen },
+            balance_scr: { screen: ListToiletScreen },
             logout_scr: { screen: LogoutScreen },
           },
           {

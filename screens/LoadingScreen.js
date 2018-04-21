@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { AppLoading } from 'expo';
 
-
 class LoadingScreen extends Component {
 
   static navigationOptions = {

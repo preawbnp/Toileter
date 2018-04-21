@@ -8,7 +8,7 @@ import { emailChanged, passwordChanged, loginUser, facebookLogin } from '../acti
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
 
 
-class LoginScreen extends Component {
+class Login extends Component {
 
   constructor(props) {
     super(props)
@@ -195,4 +195,4 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
   emailChanged, passwordChanged, loginUser, facebookLogin
-})(LoginScreen);
+})(Login);

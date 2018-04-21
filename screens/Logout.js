@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import { logoutUser } from '../actions';
 
 
-class LogoutScreen extends Component {
+class Logout extends Component {
 
   // Donot show header 
   static navigationOptions = {
@@ -42,4 +42,4 @@ const styles = {
 
 export default connect(null, {
   logoutUser
-})(LogoutScreen);
+})(Logout);
