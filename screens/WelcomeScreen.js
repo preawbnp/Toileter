@@ -13,28 +13,26 @@ class WelcomeScreen extends Component {
     header: null
   };
 
-
   onButtonPress = (screenname) => {
     this.props.navigation.navigate(screenname);
   };
-
-
 
   render() {
 
     console.log('-------------------------------------');
     console.log("Welcome Screen: Render: App loading status display");
+    console.log('-------------------------------------');
 
     return (
-      <View style={styles.wel_container}>
-        <View style={{flex: 9, alignItems: 'center'}}>
-          <Image source={image} style={styles.wel_logo}/>
+      <View style = {styles.wel_container}>
+        <View style = {{flex: 9, alignItems: 'center'}}>
+          <Image source = {image} style={styles.wel_logo}/>
         </View>
-        <View style={styles.wel_start_btn}>
+        <View style = {styles.wel_start_btn}>
           <Button
-            onPress={() => this.onButtonPress('login_scr')}
-            title="Start!"
-            color="#ffffff"
+            onPress = {() => this.onButtonPress('login_scr')}
+            title = "Start!"
+            color = "#ffffff"
           />
         </View>
       </View>
