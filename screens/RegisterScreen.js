@@ -26,7 +26,8 @@ class RegisterScreen extends Component {
   }
 
   static navigationOptions = {
-     title: 'Register'
+     title: 'Register',
+     header: null
   }
 
   // Call action if the value is changed

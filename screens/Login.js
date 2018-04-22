@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import validator from 'validator';
 import { emailChanged, passwordChanged, loginUser, facebookLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
-
+import styles from '../stylesheet/style';
 
 class Login extends Component {
 
@@ -23,7 +23,8 @@ class Login extends Component {
 
   static navigationOptions = {
      title: 'Login',
-     //tabBarVisible: true
+     header: null
+    //  tabBarVisible: true
   }
 
   onEmailChange(text) {
@@ -88,104 +89,14 @@ class Login extends Component {
 
     return (
       <KeyboardAwareScrollView>
-        <Divider style={{ backgroundColor: 'gray' }} />
         <View>
-              <View style={{ marginBottom: 10 }}>
-                <FormLabel>Enter Email</FormLabel>
-                <FormInput
-                  value={this.props.email}
-                  onChangeText={email => this.onEmailChange(email)}
-                  onBlur={() => {
-                    this.validateInput('email', this.props.email);
-                  }}
-                />
-                <View>
-                  { this.renderFormError('email') }
-                </View>
-              </View>
-
-              <View style={{ marginBottom: 10 }}>
-                <FormLabel>Enter Password</FormLabel>
-                <FormInput
-                  value={this.props.password}
-                  onChangeText={password => this.onPasswordChange(password)}
-                  secureTextEntry={true}
-                  onBlur={() => {
-                    this.validateInput('password', this.props.password);
-                  }}
-                />
-                <View>
-                  { this.renderFormError('password') }
-                </View>
-              </View>
-
-              <Text style={styles.errorTextStyle}>
-                {this.props.error}
-              </Text>
-
-              <View style={styles.orView}>
-                <Text> - or - </Text>
-              </View>
-
-              <View style={styles.snsButtonContainer}>
-                <SocialIcon
-                    title="Sign In With Facebook"
-                    button
-                    fontWeight="400"
-                    type="facebook"
-                    onPress={ () => this.props.facebookLogin() }
-                  />
-              </View>
-
-              <View style={styles.viewContainer}>
-                <Button
-                  onPress={this.onButtonPress.bind(this)}
-                  title="Submit"
-                  disabled={!(this.state.emailFlag && this.state.passwordFlag)}
-                   />
-              </View>
-
+          <Text style = {styles.text_header}>Log In</Text>
         </View>
-        <View>
-            
-              <Button
-                title="Register"
-                color="#424242"
-                onPress={ () => this.onNavPress('register_scr') }
-              />
-            
-        </View>
-
       </KeyboardAwareScrollView>
     );
   }
 }
 
-const styles = {
-  buttonContainer: {
-    position: 'relative',
-    marginTop: 10
-  },
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'red'
-  },
-  viewContainer: {
-    margin: 10
-  },
-  orView: {
-    margin: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  snsButtonContainer: {
-    position: 'relative',
-    marginTop: 10,
-    margin: 50
-  }
-}
 
 
 const mapStateToProps = ({ auth }) => {

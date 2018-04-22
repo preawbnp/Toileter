@@ -17,7 +17,8 @@ import LoginScreen from './screens/Login';
 import LoadingScreen from './screens/LoadingScreen';
 import HomeScreen from './screens/Home';
 import ListToiletScreen from './screens/ListToilet';
-import LogoutScreen from './screens/Logout'
+import LogoutScreen from './screens/Logout';
+import styles from './stylesheet/style';
 //import Test from './screens/Test';
 
 
@@ -45,8 +46,8 @@ export default class App extends React.Component {
       login_scr: { screen: LoginScreen },
       main_scr: {
           screen: TabNavigator({
-            news_scr: { screen: HomeScreen },
-            balance_scr: { screen: ListToiletScreen },
+            Home: { screen: HomeScreen },
+            List: { screen: ListToiletScreen },
             logout_scr: { screen: LogoutScreen },
           },
           {
@@ -67,19 +68,13 @@ export default class App extends React.Component {
       });
 
       return (
-        <Provider store={this.store}>
-          <View style={styles.container}>
+        <Provider store = {this.store}>
+          <View style = {styles.container_default}>
             <MainNavigator />
+            {/* <LoginScreen/> */}
+            {/* <WelcomeScreen/> */}
           </View>
         </Provider>
       );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-});
