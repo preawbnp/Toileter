@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AppRegistry, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import validator from 'validator';
 import { emailChanged, passwordChanged, loginUser, facebookLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
-import styles from '../stylesheet/style';
+// import styles from '../stylesheet/style';
+import styles from '../stylesheet/LoginScreen';
 
 class Login extends Component {
 
@@ -88,16 +89,77 @@ class Login extends Component {
   render() {
 
     return (
-      <KeyboardAwareScrollView>
-        <View>
-          <Text style = {styles.text_header}>Log In</Text>
+      // <KeyboardAwareScrollView>
+        <View style={styles.container}>
+          <View style={styles.container_head}>
+              <Text style={styles.text_header}>Log In</Text>
+          </View>
+
+          <View style={styles.container_form}>
+            <FormLabel>Enter Email</FormLabel>
+            <FormInput
+              value={this.props.email}
+              placeholder='email@email.com'
+              onChangeText={email => this.onEmailChange(email)}
+              onBlur={() => {
+                this.validateInput('email', this.props.email);
+              }}
+            />
+            <View>
+              { this.renderFormError('email') }
+            </View>
+
+            <FormLabel>Enter Password</FormLabel>
+              <FormInput
+                value={this.props.password}
+                placeholder='●●●●'
+                onChangeText={password => this.onPasswordChange(password)}
+                secureTextEntry={true}
+                onBlur={() => {
+                  this.validateInput('password', this.props.password);
+                }}
+              />
+              <View>
+                { this.renderFormError('password') }
+              </View>
+              
+              <View style={styles.text_or}>
+                <Text> - or - </Text>
+              </View>
+              <View style={styles.btn_facebook}>
+                <SocialIcon
+                  title="Sign In With Facebook"
+                  button
+                    fontWeight="400"
+                    type="facebook"
+                  onPress={ () => this.props.facebookLogin() }
+                />
+              </View>
+          </View>
+
+          <View style={styles.container_link}>
+            <Button
+              title = "Don't already have an account?"
+              backgroundColor = "#ffffff"
+              color = "#000000"
+              fontSize = '14'
+              onPress={ () => this.onNavPress('register_scr') }
+            />
+          </View>
+
+          <View style={styles.container_button}>
+            <Button
+              title = "Log In"
+              backgroundColor = "#74DAFF"
+              onPress={this.onButtonPress.bind(this)}
+              disabled={!(this.state.emailFlag && this.state.passwordFlag)}
+            />
+          </View>
         </View>
-      </KeyboardAwareScrollView>
+      // </KeyboardAwareScrollView>
     );
   }
 }
-
-
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, user } = auth;

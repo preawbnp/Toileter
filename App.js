@@ -67,12 +67,14 @@ export default class App extends React.Component {
         lazy: true
       });
 
+      //Hide waring yellow bar
+      console.disableYellowBox = true;
+
       return (
         <Provider store = {this.store}>
           <View style = {styles.container_default}>
-            <MainNavigator />
+            <MainNavigator/>
             {/* <LoginScreen/> */}
-            {/* <WelcomeScreen/> */}
           </View>
         </Provider>
       );

@@ -6,10 +6,6 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
     },
-    container_screen: {
-        flex: 1,
-        backgroundColor: '#74DAFF'
-    },
 
     // text
     text: {
@@ -21,7 +17,8 @@ export default StyleSheet.create({
     text_header: {
         fontSize: 30,
         fontWeight: 'bold',
-        marginLeft: 10
+        // marginLeft: 10,
+
     },
     text_error: {
         fontSize: 20,
@@ -54,7 +51,6 @@ export default StyleSheet.create({
 
     // image
     
-
     container_auth: {
         marginTop: 100,
         marginLeft: 40,
