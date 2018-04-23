@@ -11,10 +11,10 @@ import { LOGIN_STATUS_CHANGED } from './actions/types';
 import { config } from './consts';
 import firebase from 'firebase';
 import reducers from './reducers';
-import WelcomeScreen from './screens/WelcomeScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import WelcomeScreen from './screens/Welcome';
+import RegisterScreen from './screens/Register';
 import LoginScreen from './screens/Login';
-import LoadingScreen from './screens/LoadingScreen';
+import LoadingScreen from './screens/Loading';
 import HomeScreen from './screens/Home';
 import ListToiletScreen from './screens/ListToilet';
 import LogoutScreen from './screens/Logout';
@@ -42,8 +42,8 @@ export default class App extends React.Component {
     const MainNavigator = StackNavigator({
       loading_scr: { screen: LoadingScreen },
       welcome_scr: { screen: WelcomeScreen },
-      register_scr: { screen: RegisterScreen },
       login_scr: { screen: LoginScreen },
+      register_scr: { screen: RegisterScreen },
       main_scr: {
           screen: TabNavigator({
             Home: { screen: HomeScreen },
@@ -74,7 +74,7 @@ export default class App extends React.Component {
         <Provider store = {this.store}>
           <View style = {styles.container_default}>
             <MainNavigator/>
-            {/* <LoginScreen/> */}
+            {/* <RegisterScreen/> */}
           </View>
         </Provider>
       );

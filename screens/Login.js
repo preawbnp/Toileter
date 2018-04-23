@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AppRegistry, Platform } from 'react-native';
+import { View, Text, AppRegistry, Platform, DeviceEventEmitter } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
@@ -7,7 +7,7 @@ import validator from 'validator';
 import { emailChanged, passwordChanged, loginUser, facebookLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
 // import styles from '../stylesheet/style';
-import styles from '../stylesheet/LoginScreen';
+import styles from '../stylesheet/Login';
 
 class Login extends Component {
 
@@ -156,7 +156,7 @@ class Login extends Component {
             />
           </View>
         </View>
-      // </KeyboardAwareScrollView>
+      // {/* </KeyboardAwareScrollView> */}
     );
   }
 }

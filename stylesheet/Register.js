@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
@@ -8,8 +8,8 @@ export default StyleSheet.create({
         backgroundColor: 'white',
     },
     container_head: {
-        flex: 1.5,
-        marginTop: "30%",
+        flex: 1.3,
+        marginTop: "25%",
         marginLeft: "15%",
         // alignItems: 'center',
         // backgroundColor: 'red',
@@ -20,6 +20,7 @@ export default StyleSheet.create({
         flex: 3,
         marginLeft: "10%",
         marginRight: "10%",
+        marginTop: "-20%",
         flexDirection: 'column',
         alignContent: 'stretch',
         // backgroundColor: 'blue',
@@ -30,6 +31,7 @@ export default StyleSheet.create({
         flex: 0.5,
         alignSelf: 'center',
         justifyContent: 'flex-end',
+        padding: 5,
         // backgroundColor: 'green',
         // height: 100,
         // width: 300,
@@ -38,11 +40,15 @@ export default StyleSheet.create({
         flex: 1,
         width:"70%", 
         alignSelf: 'center',
-        justifyContent: 'center', 
-        marginBottom: "10%",
+        justifyContent: 'flex-start', 
         // backgroundColor: 'yellow',
         // height: 100,
         // width: 300,
+    },
+    container_group: {
+        flexDirection: 'row', 
+        justifyContent: 'space-around',
+
     },
     text_header: {
         fontSize: 30,
@@ -50,7 +56,7 @@ export default StyleSheet.create({
         alignSelf: "flex-start",
     },
     text_or: {
-        margin: 30,
+        margin: 5,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

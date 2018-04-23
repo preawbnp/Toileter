@@ -3,11 +3,11 @@ import { View, Text, Dimensions, rgba, Image, Button } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { AppLoading } from 'expo';
-import styles from '../stylesheet/WelcomeScreen';
+import styles from '../stylesheet/Welcome';
 
 var image = require('../images/logo2.png');
 
-class WelcomeScreen extends Component {
+class Welcome extends Component {
 
   static navigationOptions = {
     header: null
@@ -55,5 +55,5 @@ class WelcomeScreen extends Component {
   }
 }
 
-export default WelcomeScreen;
+export default Welcome;
 

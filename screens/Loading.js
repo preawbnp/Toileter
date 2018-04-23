@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { AppLoading } from 'expo';
 
-class LoadingScreen extends Component {
+class Loading extends Component {
 
   static navigationOptions = {
     header: null
@@ -94,4 +94,4 @@ const styles = {
 
 export default connect( mapStateToProps , {
   loginStatusChanged, authStateChanged
-})(LoadingScreen);
+})(Loading);
