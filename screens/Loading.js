@@ -6,8 +6,7 @@ import firebase from 'firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { AppLoading } from 'expo';
 
-
-class LoadingScreen extends Component {
+class Loading extends Component {
 
   static navigationOptions = {
     header: null
@@ -33,12 +32,12 @@ class LoadingScreen extends Component {
   onAuthComplete(props) {
 
     if (props.loginStatus == 'loggedin') {
-      console.log('Loading Screen: จะแสดงเมนู ข่าว ยอดหนี้ และ Logout');
-      this.props.navigation.navigate('news_scr');
+      // console.log('Loading Screen: จะแสดงเมนู ข่าว ยอดหนี้ และ Logout');
+      this.props.navigation.navigate('Home');
     }
 
     if (props.loginStatus == 'notloggedin') {
-      console.log('Loading Screen: จะแสดงปุ่ม  Login และ Register');
+      // console.log('Loading Screen: จะแสดงปุ่ม  Login และ Register');
       this.props.navigation.navigate('welcome_scr');
     }
 
@@ -95,4 +94,4 @@ const styles = {
 
 export default connect( mapStateToProps , {
   loginStatusChanged, authStateChanged
-})(LoadingScreen);
+})(Loading);

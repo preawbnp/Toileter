@@ -11,13 +11,14 @@ import { LOGIN_STATUS_CHANGED } from './actions/types';
 import { config } from './consts';
 import firebase from 'firebase';
 import reducers from './reducers';
-import WelcomeScreen from './screens/WelcomeScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
-import LoadingScreen from './screens/LoadingScreen';
-import NewsScreen from './screens/NewsScreen';
-import BalanceScreen from './screens/BalanceScreen';
-import LogoutScreen from './screens/LogoutScreen'
+import WelcomeScreen from './screens/Welcome';
+import RegisterScreen from './screens/Register';
+import LoginScreen from './screens/Login';
+import LoadingScreen from './screens/Loading';
+import HomeScreen from './screens/Home';
+import ListToiletScreen from './screens/ListToilet';
+import LogoutScreen from './screens/Logout';
+import styles from './stylesheet/style';
 //import Test from './screens/Test';
 
 
@@ -41,12 +42,12 @@ export default class App extends React.Component {
     const MainNavigator = StackNavigator({
       loading_scr: { screen: LoadingScreen },
       welcome_scr: { screen: WelcomeScreen },
-      register_scr: { screen: RegisterScreen },
       login_scr: { screen: LoginScreen },
+      register_scr: { screen: RegisterScreen },
       main_scr: {
           screen: TabNavigator({
-            news_scr: { screen: NewsScreen },
-            balance_scr: { screen: BalanceScreen },
+            Home: { screen: HomeScreen },
+            List: { screen: ListToiletScreen },
             logout_scr: { screen: LogoutScreen },
           },
           {
@@ -66,20 +67,16 @@ export default class App extends React.Component {
         lazy: true
       });
 
+      //Hide waring yellow bar
+      console.disableYellowBox = true;
+
       return (
-        <Provider store={this.store}>
-          <View style={styles.container}>
-            <MainNavigator />
+        <Provider store = {this.store}>
+          <View style = {styles.container_default}>
+            <MainNavigator/>
+            {/* <RegisterScreen/> */}
           </View>
         </Provider>
       );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-});

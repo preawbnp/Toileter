@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AppRegistry, Platform, DeviceEventEmitter } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import validator from 'validator';
 import { emailChanged, passwordChanged, loginUser, facebookLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
+// import styles from '../stylesheet/style';
+import styles from '../stylesheet/Login';
 
-
-class LoginScreen extends Component {
+class Login extends Component {
 
   constructor(props) {
     super(props)
@@ -23,7 +24,8 @@ class LoginScreen extends Component {
 
   static navigationOptions = {
      title: 'Login',
-     //tabBarVisible: true
+     header: null
+    //  tabBarVisible: true
   }
 
   onEmailChange(text) {
@@ -87,106 +89,77 @@ class LoginScreen extends Component {
   render() {
 
     return (
-      <KeyboardAwareScrollView>
-        <Divider style={{ backgroundColor: 'gray' }} />
-        <View>
-              <View style={{ marginBottom: 10 }}>
-                <FormLabel>Enter Email</FormLabel>
-                <FormInput
-                  value={this.props.email}
-                  onChangeText={email => this.onEmailChange(email)}
-                  onBlur={() => {
-                    this.validateInput('email', this.props.email);
-                  }}
-                />
-                <View>
-                  { this.renderFormError('email') }
-                </View>
+      // <KeyboardAwareScrollView>
+        <View style={styles.container}>
+          <View style={styles.container_head}>
+              <Text style={styles.text_header}>Log In</Text>
+          </View>
+
+          <View style={styles.container_form}>
+            <FormLabel>Enter Email</FormLabel>
+            <FormInput
+              value={this.props.email}
+              placeholder='email@email.com'
+              onChangeText={email => this.onEmailChange(email)}
+              onBlur={() => {
+                this.validateInput('email', this.props.email);
+              }}
+            />
+            <View>
+              { this.renderFormError('email') }
+            </View>
+
+            <FormLabel>Enter Password</FormLabel>
+              <FormInput
+                value={this.props.password}
+                placeholder='●●●●'
+                onChangeText={password => this.onPasswordChange(password)}
+                secureTextEntry={true}
+                onBlur={() => {
+                  this.validateInput('password', this.props.password);
+                }}
+              />
+              <View>
+                { this.renderFormError('password') }
               </View>
-
-              <View style={{ marginBottom: 10 }}>
-                <FormLabel>Enter Password</FormLabel>
-                <FormInput
-                  value={this.props.password}
-                  onChangeText={password => this.onPasswordChange(password)}
-                  secureTextEntry={true}
-                  onBlur={() => {
-                    this.validateInput('password', this.props.password);
-                  }}
-                />
-                <View>
-                  { this.renderFormError('password') }
-                </View>
-              </View>
-
-              <Text style={styles.errorTextStyle}>
-                {this.props.error}
-              </Text>
-
-              <View style={styles.orView}>
+              
+              <View style={styles.text_or}>
                 <Text> - or - </Text>
               </View>
-
-              <View style={styles.snsButtonContainer}>
+              <View style={styles.btn_facebook}>
                 <SocialIcon
-                    title="Sign In With Facebook"
-                    button
+                  title="Sign In With Facebook"
+                  button
                     fontWeight="400"
                     type="facebook"
-                    onPress={ () => this.props.facebookLogin() }
-                  />
+                  onPress={ () => this.props.facebookLogin() }
+                />
               </View>
+          </View>
 
-              <View style={styles.viewContainer}>
-                <Button
-                  onPress={this.onButtonPress.bind(this)}
-                  title="Submit"
-                  disabled={!(this.state.emailFlag && this.state.passwordFlag)}
-                   />
-              </View>
+          <View style={styles.container_link}>
+            <Button
+              title = "Don't already have an account?"
+              backgroundColor = "#ffffff"
+              color = "#000000"
+              fontSize = '14'
+              onPress={ () => this.onNavPress('register_scr') }
+            />
+          </View>
 
+          <View style={styles.container_button}>
+            <Button
+              title = "Log In"
+              backgroundColor = "#74DAFF"
+              onPress={this.onButtonPress.bind(this)}
+              disabled={!(this.state.emailFlag && this.state.passwordFlag)}
+            />
+          </View>
         </View>
-        <View>
-            
-              <Button
-                title="Register"
-                color="#424242"
-                onPress={ () => this.onNavPress('register_scr') }
-              />
-            
-        </View>
-
-      </KeyboardAwareScrollView>
+      // {/* </KeyboardAwareScrollView> */}
     );
   }
 }
-
-const styles = {
-  buttonContainer: {
-    position: 'relative',
-    marginTop: 10
-  },
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'red'
-  },
-  viewContainer: {
-    margin: 10
-  },
-  orView: {
-    margin: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  snsButtonContainer: {
-    position: 'relative',
-    marginTop: 10,
-    margin: 50
-  }
-}
-
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, user } = auth;
@@ -195,4 +168,4 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
   emailChanged, passwordChanged, loginUser, facebookLogin
-})(LoginScreen);
+})(Login);
