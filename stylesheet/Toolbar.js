@@ -19,4 +19,4 @@ export default StyleSheet.create({
         backgroundColor: '#ffffff',
         height: 22,
     }
-})L
+})
