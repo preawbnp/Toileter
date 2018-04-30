@@ -50,22 +50,25 @@ class ListToilet extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style = {styles.container}>
                 <Toolbar 
-                    title="TOILET LIST"
+                    title = "TOILET LIST"
                 />
-                <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0}}>
+
+                <List containerStyle = {styles.containerStyle}>
                     <FlatList
                     data = {this.state.data}
-                    renderItem={
+                    renderItem = {
                         ({item}) => (
                         <ListItem
-                            title={`${item.title}`}
-                            subtitle={`${item.latitude}, ${item.longitude}`}
-                            containerStyle={{borderBottomWidth:0}}
+                            title = {`${item.title}`}
+                            titleStyle = {styles.titleStyle}
+                            subtitle = {`${item.latitude}, ${item.longitude}`}
+                            subtitleStyle = {styles.subtitleStyle}
+                            containerStyle = {styles.containerStyle}
                         />
                         )}
-                        keyExtractor={item => item._key}
+                        keyExtractor = {item => item._key}
                     />
                 </List>
             </View>

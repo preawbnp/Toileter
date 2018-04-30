@@ -7,19 +7,18 @@ export default StyleSheet.create({
         // flexDirection: 'row',
         // alignItems: 'center',
     },
-    listview: {
-        flex: 1
+    containerStyle: {
+        borderTopWidth: 0, 
+        borderBottomWidth: 0
     },
-    li: {
-        borderBottomColor: '#eeeeee',
-        borderColor: 'transparent',
-        borderWidth: 1,
-        padding: 20,
+    titleStyle: {
+        color: '#404040', 
+        fontWeight: 'bold', 
+        fontSize: 18
     },
-    liContainer: {
-        flex: 2,
+    subtitleStyle: {
+        color: '#858585', 
+        fontSize: 12
     },
-    liText: {
-        fontSize: 16
-    },
+
 })
