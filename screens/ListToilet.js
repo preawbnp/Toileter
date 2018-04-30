@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, TouchableHighlight } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight } from 'react-native';
+import { List, ListItem } from "react-native-elements"
 import styles from '../stylesheet/ListToilet';
 import Toolbar from './components/Toolbar';
+import * as firebase from 'firebase';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -9,42 +11,42 @@ class ListToilet extends Component {
         header: null
     }
 
-    constructor() {
-        super();
-        let ds = new ListView.DataSource({rowHasChanged:(r1, r2) => r1 !== r2});
+    constructor(props){
+        super(props);
+    
         this.state = {
-            itemDataSource: ds
+          data: [],
+        };
+
+        this.itemsRef = this.getRef().child('toilets');
+    }
+
+    getRef(){
+        return firebase.database().ref();
+    }
+    
+    componentDidMount(){
+        this.getItems(this.itemsRef);
+    }
+
+    getItems(itemsRef){
+        itemsRef.on('value', (data) => {
+                let items = [];
+                data.forEach((child) => {
+                    items.push({
+                        title: child.val().title,
+                        latitude: child.val().latitude,
+                        longitude: child.val().longitude,
+                        _key: child.key
+                    });
+                });
+    
+                console.log(items);
+                this.setState({
+                    data: items
+                });
+            })
         }
-        this.renderRow = this.renderRow.bind(this);
-        this.pressRow = this.pressRow.bind(this);
-    }
-
-    componentWillMount() {
-        this.getItems();
-    }
-
-    getItems() {
-        let items = [{title: 'Item #1'}, {title: 'Item #2'}]
-        this.setState({
-            itemDataSource: this.state.itemDataSource.cloneWithRows(items)
-        });
-    }
-
-    pressRow(item) {
-        console.log(item);
-    }
-
-    renderRow(item) {
-        return (
-            <TouchableHighlight onPress={() => {
-                this.pressRow(item)
-            }}>
-                <View style={styles.li}>
-                    <Text style={styles.liText}>{item.title}</Text>
-                </View>
-            </TouchableHighlight>
-        );
-    }
 
     render() {
         return (
@@ -52,10 +54,20 @@ class ListToilet extends Component {
                 <Toolbar 
                     title="TOILET LIST"
                 />
-                <ListView
-                    dataSource = {this.state.itemDataSource}
-                    renderRow = {this.renderRow}
-                />
+                <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0}}>
+                    <FlatList
+                    data = {this.state.data}
+                    renderItem={
+                        ({item}) => (
+                        <ListItem
+                            title={`${item.title}`}
+                            subtitle={`${item.latitude}, ${item.longitude}`}
+                            containerStyle={{borderBottomWidth:0}}
+                        />
+                        )}
+                        keyExtractor={item => item._key}
+                    />
+                </List>
             </View>
         );
     }
