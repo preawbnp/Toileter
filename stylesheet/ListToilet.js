@@ -9,7 +9,7 @@ export default StyleSheet.create({
     },
     containerStyle: {
         borderTopWidth: 0, 
-        borderBottomWidth: 0
+        borderBottomWidth: 0,
     },
     titleStyle: {
         color: '#404040', 
@@ -61,5 +61,5 @@ export default StyleSheet.create({
     },
     input_group: {
         padding: 25,
-    }
+    },
 })

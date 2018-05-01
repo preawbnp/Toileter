@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, TouchableHighlight, Modal, TextInput } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight, 
+        Modal, TextInput, ListView, 
+        Image, Alert, PixelRatio } from 'react-native';
 import { List, ListItem, Card } from "react-native-elements"
 import styles from '../stylesheet/ListToilet';
 import Toolbar from './components/Toolbar';
@@ -22,6 +24,7 @@ class ListToilet extends Component {
           latitude: 0,
           longitude: 0, 
           rate: 0,
+          image: '',
         };
 
         this.itemsRef = this.getRef().child('toilets');
@@ -48,6 +51,7 @@ class ListToilet extends Component {
                     latitude: child.val().latitude,
                     longitude: child.val().longitude,
                     rate: child.val().rate,
+                    image: child.val().image,
                     _key: child.key
                 });
             });
@@ -70,26 +74,29 @@ class ListToilet extends Component {
                     title = "TOILET LIST"
                 />
 
-                <List containerStyle = {styles.containerStyle}>
+                {/* <List containerStyle = {styles.containerStyle}> */}
                     <FlatList
                     data = {this.state.data}
-                    renderItem = {
-                        ({item}) => (
+                    renderItem = { ({item}) => (
                         <ListItem
                             title = {`${item.title}`}
-                            titleStyle = {styles.titleStyle}
                             subtitle = {`${item.latitude}, ${item.longitude}`}
+                            avatar = {{uri: item.image}}
+                            titleStyle = {styles.titleStyle}
                             subtitleStyle = {styles.subtitleStyle}
                             containerStyle = {styles.containerStyle}
-                            badge={{ value: item.rate, textStyle: { color: 'white', fontSize: 14 }, containerStyle: { margin: 10, backgroundColor: '#F4CA37' } }}
+                            chevron = {false}
+                            badge = {{ value: item.rate, 
+                                    textStyle: { color: 'white', fontSize: 14 }, 
+                                    containerStyle: { margin: 10, backgroundColor: '#F4CA37' } }}
                         />
                         )}
                         keyExtractor = {item => item._key}
                     />
-                </List>
+                {/* </List> */}
                 
                 <Modal
-                    animationType="fade"
+                    animationType="none"
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {}}
@@ -167,3 +174,4 @@ class ListToilet extends Component {
     }
 }
 export default ListToilet;
+
