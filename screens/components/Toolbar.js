@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StatusBar } from 'react-native';
-import styles from '../../stylesheet/Toolbar';
+import styles from '../../stylesheet/component/Toolbar';
 // const styles = require('../../stylesheet/Toolbar');
 
 export default class Toolbar extends Component {

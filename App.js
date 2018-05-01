@@ -72,8 +72,8 @@ export default class App extends React.Component {
       return (
         <Provider store = {this.store}>
           <View style = {styles.container_default}>
-            <MainNavigator/>
-            {/* <ListToiletScreen/> */}
+            {/* <MainNavigator/> */}
+            <ListToiletScreen/>
           </View>
         </Provider>
       );

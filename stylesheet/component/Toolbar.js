@@ -7,12 +7,12 @@ export default StyleSheet.create({
         borderColor: 'transparent',
         borderWidth: 1,
         justifyContent: 'center',
-        height: 60,
+        height: 80,
         flexDirection: 'row',
     },
     navbarTitle: {
         color: '#444444',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
     },
     toolbar: {
