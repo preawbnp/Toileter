@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, TouchableHighlight, Modal, TextInput } from 'react-native';
-import { List, ListItem } from "react-native-elements"
+import { List, ListItem, Card } from "react-native-elements"
 import styles from '../stylesheet/ListToilet';
 import Toolbar from './components/Toolbar';
 import AddButton from './components/AddButton';
