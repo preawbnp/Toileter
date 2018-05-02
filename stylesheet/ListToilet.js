@@ -77,5 +77,10 @@ export default StyleSheet.create({
     detailAlign: {
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
+    functionAlign: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -10,
+    },
 })

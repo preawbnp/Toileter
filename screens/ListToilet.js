@@ -34,7 +34,10 @@ class ListToilet extends Component {
           rate: 0,
           image: '',
           userLatitude: 0,
-          userLongitude: 0,
+          userLongitude: 0,          
+          isDisabled: false,
+          isFee: false,
+          isSprayHose: false,
         };
 
         this.itemsRef = this.getRef().child('toilets');
@@ -74,6 +77,9 @@ class ListToilet extends Component {
                     longitude: child.val().longitude,
                     rate: child.val().rate,
                     image: child.val().image,
+                    isDisabled: child.val().isDisabled,
+                    isFee: child.val().isFee,
+                    isSprayHose: child.val().isSprayHose,
                     _key: child.key
                 });
             });
@@ -88,7 +94,7 @@ class ListToilet extends Component {
     addItem() {
         this.setModalVisible(true);
     }
-    
+
     render() {
         return (
             <Container>               
@@ -107,16 +113,32 @@ class ListToilet extends Component {
                                         </Left>
                                         <Right>
                                             <Button iconLeft transparent danger onPress={() => {this.itemsRef.child(item._key).remove()}}>
-                                                <Icon active name='trash'/>
+                                                <Icon active name='close'/>
                                             </Button>
                                         </Right>
                                     </CardItem>
                                     <CardItem>
                                         <Image source={{uri: item.image}} style={{height: 200, width: null, flex: 1}}/>    
                                     </CardItem>
+
                                     <CardItem style={styles.detailAlign}>
                                         <Text style={styles.detailText}>{`latitude: ${item.latitude}, longitude: ${item.longitude}`}</Text>
                                     </CardItem>
+                                    <CardItem style={styles.functionAlign}>
+                                        <Button iconLeft transparent primary>
+                                            <Icon active name='logo-usd'/>
+                                            <Text style={styles.detailText}>{`${item.isFee}`}</Text>
+                                        </Button>
+                                        <Button iconLeft transparent primary>
+                                            <Icon active name='eye-off'/>
+                                            <Text style={styles.detailText}>{`${item.isDisabled}`}</Text>
+                                        </Button>
+                                        <Button iconLeft transparent primary>
+                                            <Icon active name='water'/>
+                                            <Text style={styles.detailText}>{`${item.isSprayHose}`}</Text>
+                                        </Button>
+                                    </CardItem>
+
                                 </Card>
                             </ListItem>
                         }>
