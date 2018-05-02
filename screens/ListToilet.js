@@ -35,7 +35,6 @@ class ListToilet extends Component {
           image: '',
           userLatitude: 0,
           userLongitude: 0,
-          
         };
 
         this.itemsRef = this.getRef().child('toilets');
@@ -90,8 +89,8 @@ class ListToilet extends Component {
         this.setModalVisible(true);
     }
 
-    removeItem() {
-
+    removeItem(item) {
+        this.itemsRef.child(item._key).remove();
     }
 
     render() {
@@ -111,7 +110,7 @@ class ListToilet extends Component {
                                             <Text style={styles.titleStyle}>{`${item.title}`}</Text>
                                         </Left>
                                         <Right>
-                                            <Button iconLeft transparent danger>
+                                            <Button iconLeft transparent danger onPress={() => {this.itemsRef.child(item._key).remove()}}>
                                                 <Icon active name='trash'/>
                                             </Button>
                                         </Right>
@@ -119,8 +118,8 @@ class ListToilet extends Component {
                                     <CardItem>
                                         <Image source={{uri: item.image}} style={{height: 200, width: null, flex: 1}}/>    
                                     </CardItem>
-                                    <CardItem style={styles.detailText}>
-                                        <Text>Show place detail</Text>
+                                    <CardItem style={styles.detailAlign}>
+                                        <Text style={styles.detailText}>{`latitude: ${item.latitude}, longitude: ${item.longitude}`}</Text>
                                     </CardItem>
                                 </Card>
                             </ListItem>
@@ -170,7 +169,8 @@ class ListToilet extends Component {
                             
                             <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
                                 <Text style={styles.textModalStyle}>Your location</Text>
-                                <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude},{this.state.userLongitude} )</Text>
+                                <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
+                                <Text style={styles.textModalReviewStyle}>latitude, longitude</Text>
                                 {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
                             </View>
                         </View>

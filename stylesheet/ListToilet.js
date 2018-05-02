@@ -24,6 +24,11 @@ export default StyleSheet.create({
         color: '#585858', 
         fontSize: 14
     },
+    textModalReviewStyle: {
+        color: '#989898', 
+        fontSize: 12,
+        marginTop: 5,
+    },
     inputText: {
         margin: 15,
         height: 40,
@@ -67,8 +72,10 @@ export default StyleSheet.create({
         padding: 25,
     },
     detailText: {
+        fontSize: 12,
+    },
+    detailAlign: {
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 14,
     }
 })

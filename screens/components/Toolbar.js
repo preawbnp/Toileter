@@ -9,7 +9,7 @@ export default class Toolbar extends Component {
             <View>
                 <StatusBar
                     backgroundColor = "coral"
-                    barStyle = "loght-content"
+                    barStyle = "light-content"
                 />
                 <View style={styles.navbar}>
                     <Text style={styles.navbarTitle}>
