@@ -14,11 +14,15 @@ export default StyleSheet.create({
     titleStyle: {
         color: '#404040', 
         fontWeight: 'bold', 
-        fontSize: 18
+        fontSize: 16
     },
-    subtitleStyle: {
-        color: '#858585', 
-        fontSize: 12
+    textModalStyle: {
+        color: '#404040', 
+        fontSize: 16
+    },
+    textModalLocationStyle: {
+        color: '#585858', 
+        fontSize: 14
     },
     inputText: {
         margin: 15,

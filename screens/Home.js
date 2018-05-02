@@ -52,6 +52,8 @@ class Home extends Component {
   }
 
   render() {
+    const { region } = this.state;
+    const { children, renderMarker, markers } = this.props;
     return (
       <MapView
         style = {{flex: 1}}

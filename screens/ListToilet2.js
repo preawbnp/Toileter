@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-// import { Text, View, FlatList, TouchableHighlight, 
-//         Modal, TextInput, ListView, 
-//         Image, Alert, PixelRatio } from 'react-native';
-import { View, Image, Modal, TextInput, TouchableHighlight } from 'react-native';
+import { TouchableHighlight, 
+        Modal, TextInput, View, Image } from 'react-native';
 import MapView from "react-native-maps";
 import styles from '../stylesheet/ListToilet';
 import Toolbar from './components/Toolbar';
 import AddButton from './components/AddButton';
 import * as firebase from 'firebase';
 import { Container, Header, Content, Card, CardItem, Thumbnail, 
-    Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
+    Text, Button, Icon, Left, Body, Right, List, ListItem } from 'native-base';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -86,35 +84,46 @@ class ListToilet extends Component {
 
     render() {
         return (
-            <Container>               
-                <Header style={{color: '#444444', fontSize: 24}}>
-                    <Title style={{marginTop: 10}}>Toileter</Title>
-                </Header>
+            <View style = {styles.container}>               
+                <Toolbar 
+                    title = "TOILET LIST"
+                />
+                
+                {/* <Card>
+                    <CardItem>
+                        <Image source={{uri: 'Image URL'}} style={{height: 200, width: null, flex: 1}}/>
+                    </CardItem>
 
-                <Content style={{backgroundColor: 'white'}}>
-                    <List dataArray = { this.state.data }
-                        renderRow = { (item) =>
-                            <ListItem>
-                                <Card>
-                                    <CardItem header style={{height: 50}}>
-                                        <Left>
-                                            <Text style={styles.titleStyle}>{`${item.title}`}</Text>
-                                        </Left>
-                                        <Right>
-                                            <Button iconLeft transparent danger>
-                                                <Icon name='trash' />
-                                            </Button>
-                                        </Right>
-                                    </CardItem>
-                                    <CardItem cardBody>
-                                        <Image source={{uri: item.image}} style={{height: 150, width: null, flex: 1}}/>
-                                    </CardItem>
-                                </Card>
-                            </ListItem>
-                        }>
-                    </List>
-
-                    <Modal
+                    <CardItem>
+                        <Body>
+                            <Text>Future Park Rangsit</Text>
+                            <Text>Description</Text>
+                        </Body>
+                        <Right>
+                        <Button rounded style={{backgroundColor: '#FF7468'}}>
+                            <Icon name="trash"/>
+                        </Button>
+                        </Right>
+                    </CardItem>
+                </Card> */}
+                    
+                        
+                <List 
+                    data = {this.state.data}
+                    renderItem = { (item) => (
+                        <ListItem>
+                            <Card>
+                                <CardItem>
+                                    <Image>{{uri: item.image}}</Image>
+                                </CardItem>
+                            </Card>
+                        </ListItem>
+                        )}
+                        keyExtractor = {item => item._key}
+                    >
+                </List>
+                
+                <Modal
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
@@ -155,11 +164,12 @@ class ListToilet extends Component {
                                 onChangeText = {(value) => this.setState({rate: value})}
                             />
                             
-                            <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
-                                <Text style={styles.textModalStyle}>Your location</Text>
-                                <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude},{this.state.userLongitude} )</Text>
-                                {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-                            </View>
+                            <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+                            <Text>Latitude: {this.state.userLatitude}</Text>
+                            <Text>Longitude: {this.state.userLongitude}</Text>
+                            {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+                        </View>
+
                         </View>
 
                         {/* Button */}
@@ -193,10 +203,8 @@ class ListToilet extends Component {
                 </View>
                 </Modal>
 
-                </Content>
-
                 <AddButton onPress={this.addItem.bind(this)} title = "Add Item"/>
-            </Container>
+            </View>
         );
     }
 }
