@@ -3,14 +3,21 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { logoutUser } from '../actions';
-
+import { Ionicons } from '@expo/vector-icons'
 
 class Logout extends Component {
 
   // Donot show header 
   static navigationOptions = {
     title:'Logout',
-    header: null
+    header: null,
+    tabBarIcon: ({focused}) => (
+      <Ionicons
+          name={focused ? 'ios-log-out' : 'ios-log-out-outline'}
+          size={26}
+          style={{ color: focused ? '#33A3F4' : '#949494', marginTop: 10}}
+      />
+    ),
   };
 
   render() {

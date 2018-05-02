@@ -66,4 +66,9 @@ export default StyleSheet.create({
     input_group: {
         padding: 25,
     },
+    detailText: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 14,
+    }
 })

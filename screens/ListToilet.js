@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import { Text, View, FlatList, TouchableHighlight, 
-//         Modal, TextInput, ListView, 
-//         Image, Alert, PixelRatio } from 'react-native';
 import { View, Image, Modal, TextInput, TouchableHighlight } from 'react-native';
 import MapView from "react-native-maps";
 import styles from '../stylesheet/ListToilet';
@@ -10,11 +7,19 @@ import AddButton from './components/AddButton';
 import * as firebase from 'firebase';
 import { Container, Header, Content, Card, CardItem, Thumbnail, 
     Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
+import { Ionicons } from '@expo/vector-icons'
 
 class ListToilet extends Component { 
     static navigationOptions = {
         title: 'Toilets',
-        header: null
+        header: null,
+        tabBarIcon: ({focused}) => (
+            <Ionicons
+                name={focused ? 'ios-list' : 'ios-list-outline'}
+                size={26}
+                style={{ color: focused ? '#33A3F4' : '#949494', marginTop: 10}}
+            />
+          ),
     }
 
     constructor(props){
@@ -29,7 +34,8 @@ class ListToilet extends Component {
           rate: 0,
           image: '',
           userLatitude: 0,
-          userLongitude: 0
+          userLongitude: 0,
+          
         };
 
         this.itemsRef = this.getRef().child('toilets');
@@ -84,14 +90,18 @@ class ListToilet extends Component {
         this.setModalVisible(true);
     }
 
+    removeItem() {
+
+    }
+
     render() {
         return (
             <Container>               
-                <Header style={{color: '#444444', fontSize: 24}}>
-                    <Title style={{marginTop: 10}}>Toileter</Title>
+                <Header style={{color: '#444444'}}>
+                    <Title style={{marginTop: 10, fontSize: 20}}>TOILETER</Title>
                 </Header>
 
-                <Content style={{backgroundColor: 'white'}}>
+                <Content style={{backgroundColor: '#ffffff'}}>
                     <List dataArray = { this.state.data }
                         renderRow = { (item) =>
                             <ListItem>
@@ -102,12 +112,15 @@ class ListToilet extends Component {
                                         </Left>
                                         <Right>
                                             <Button iconLeft transparent danger>
-                                                <Icon name='trash' />
+                                                <Icon active name='trash'/>
                                             </Button>
                                         </Right>
                                     </CardItem>
-                                    <CardItem cardBody>
-                                        <Image source={{uri: item.image}} style={{height: 150, width: null, flex: 1}}/>
+                                    <CardItem>
+                                        <Image source={{uri: item.image}} style={{height: 200, width: null, flex: 1}}/>    
+                                    </CardItem>
+                                    <CardItem style={styles.detailText}>
+                                        <Text>Show place detail</Text>
                                     </CardItem>
                                 </Card>
                             </ListItem>
@@ -194,8 +207,8 @@ class ListToilet extends Component {
                 </Modal>
 
                 </Content>
-
                 <AddButton onPress={this.addItem.bind(this)} title = "Add Item"/>
+
             </Container>
         );
     }

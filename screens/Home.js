@@ -3,11 +3,20 @@ import { Text, View, Platform } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import styles from "../stylesheet/Home";
 import * as firebase from 'firebase';
+import { Ionicons } from '@expo/vector-icons'
+
 
 class Home extends Component {
   static navigationOptions = {
     title: 'Map',
-    header: null
+    header: null,
+    tabBarIcon: ({focused}) => (
+      <Ionicons
+          name={focused ? 'ios-map' : 'ios-map-outline'}
+          size={26}
+          style={{ color: focused ? '#33A3F4' : '#949494', marginTop: 10}}
+      />
+    ),
   }
 
   constructor() {
