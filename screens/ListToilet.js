@@ -88,11 +88,7 @@ class ListToilet extends Component {
     addItem() {
         this.setModalVisible(true);
     }
-
-    removeItem(item) {
-        this.itemsRef.child(item._key).remove();
-    }
-
+    
     render() {
         return (
             <Container>               
