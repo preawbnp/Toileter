@@ -235,8 +235,14 @@ class ListToilet extends Component {
                                     title: this.state.title, 
                                     latitude: this.state.latitude, 
                                     longitude: this.state.longitude, 
-                                    rate: this.state.rate
+                                    rate: this.state.rate,
+                                    isDisabled: this.state.isDisabled,
+                                    isFee: this.state.isFee,
+                                    isSprayHose: this.state.isSprayHose,
                                 });
+                                alert("Toilet Added!")
+                                this.setState({title: '', latitude: '', longitude: '', 
+                                rate: '', isDisabled: '', isFee: '', isSprayHose: ''})
                                 this.setModalVisible(!this.state.modalVisible);
                             }}>
                             <View style={styles.save_btn}>
