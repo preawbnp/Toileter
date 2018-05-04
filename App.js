@@ -21,7 +21,6 @@ import LogoutScreen from './screens/Logout';
 import styles from './stylesheet/style';
 //import Test from './screens/Test';
 
-
 export default class App extends React.Component {
 
   //state = { loggedIn: true };
@@ -74,7 +73,7 @@ export default class App extends React.Component {
         <Provider store = {this.store}>
           <View style = {styles.container_default}>
             <MainNavigator/>
-            {/* <RegisterScreen/> */}
+            {/* <ListToiletScreen/> */}
           </View>
         </Provider>
       );
