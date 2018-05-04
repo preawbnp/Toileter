@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { Container, Header, Content, Card, CardItem, Thumbnail, 
     Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
 import { Ionicons } from '@expo/vector-icons'
+import { Rating } from 'react-native-elements';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -35,9 +36,9 @@ class ListToilet extends Component {
           image: '',
           userLatitude: 0,
           userLongitude: 0,          
-          isDisabled: false,
-          isFee: false,
-          isSprayHose: false,
+          isDisabled: '',
+          isFee: '',
+          isSprayHose: '',
         };
 
         this.itemsRef = this.getRef().child('toilets');
@@ -112,7 +113,7 @@ class ListToilet extends Component {
                                             <Text style={styles.titleStyle}>{`${item.title}`}</Text>
                                         </Left>
                                         <Right>
-                                            <Button iconLeft transparent danger onPress={() => {this.itemsRef.child(item._key).remove()}}>
+                                            <Button transparent danger onPress={() => {this.itemsRef.child(item._key).remove()}}>
                                                 <Icon active name='close'/>
                                             </Button>
                                         </Right>
@@ -122,8 +123,20 @@ class ListToilet extends Component {
                                     </CardItem>
 
                                     <CardItem style={styles.detailAlign}>
+                                        <Rating
+                                            type="star"
+                                            ratingCount={5}
+                                            // fractions={2}
+                                            startingValue={`${item.rate}`}
+                                            imageSize={20}
+                                            onFinishRating={this.ratingCompleted}
+                                        />
+                                    </CardItem>
+
+                                    <CardItem style={styles.detailAlign}>
                                         <Text style={styles.detailText}>{`latitude: ${item.latitude}, longitude: ${item.longitude}`}</Text>
                                     </CardItem>
+
                                     <CardItem style={styles.functionAlign}>
                                         <Button iconLeft transparent primary>
                                             <Icon active name='logo-usd'/>
@@ -156,6 +169,12 @@ class ListToilet extends Component {
                         <Toolbar title="ADD ITEM"/>
                         
                         <View style={styles.input_group}>
+                        <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
+                                <Text style={styles.textModalStyle}>Your location</Text>
+                                <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
+                                <Text style={styles.textModalReviewStyle}>latitude, longitude</Text>
+                                {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+                            </View>
                             {/* Input data */}
                             <TextInput
                                 style = {styles.input}
@@ -180,17 +199,32 @@ class ListToilet extends Component {
                             <TextInput
                                 style = {styles.input}
                                 value = {this.state.rate}
-                                placeholder="Enter rate 1(dirty) to 5(exllent)"
+                                placeholder="Enter rate 1(dirty) to 5(excellent)"
                                 keyboardType={'numeric'}
                                 onChangeText = {(value) => this.setState({rate: value})}
                             />
+
+                            <TextInput
+                                style = {styles.input}
+                                value = {this.state.isDisabled}
+                                placeholder="Have a disabled? : true or false"
+                                onChangeText = {(value) => this.setState({isDisabled: value})}
+                           />
+
+                            <TextInput
+                                style = {styles.input}
+                                value = {this.state.isSprayHose}
+                                placeholder="Have a spray hose? : true or false"
+                                onChangeText = {(value) => this.setState({isSprayHose: value})}
+                            />
+
+                            <TextInput
+                                style = {styles.input}
+                                value = {this.state.isFee}
+                                placeholder="Have to pay to use? : true or false"
+                                onChangeText = {(value) => this.setState({isFee: value})}
+                            />
                             
-                            <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
-                                <Text style={styles.textModalStyle}>Your location</Text>
-                                <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
-                                <Text style={styles.textModalReviewStyle}>latitude, longitude</Text>
-                                {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-                            </View>
                         </View>
 
                         {/* Button */}
@@ -212,7 +246,8 @@ class ListToilet extends Component {
 
                         <TouchableHighlight
                             onPress={() => {
-                                this.setState({title: '', latitude: '', longitude: '', rate: ''})
+                                this.setState({title: '', latitude: '', longitude: '', 
+                                rate: '', isDisabled: '', isFee: '', isSprayHose: ''})
                                 this.setModalVisible(!this.state.modalVisible);
                             }}>
                             <View style={styles.cancel_btn}>

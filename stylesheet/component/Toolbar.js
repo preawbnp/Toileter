@@ -7,7 +7,7 @@ export default StyleSheet.create({
         borderColor: 'transparent',
         borderWidth: 1,
         justifyContent: 'center',
-        height: 80,
+        height: 60,
         flexDirection: 'row',
     },
     navbarTitle: {
