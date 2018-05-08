@@ -9,7 +9,6 @@ import { Container, Header, Content, Card, CardItem, Thumbnail,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
 import { Ionicons } from '@expo/vector-icons'
 import { Rating } from 'react-native-elements';
-// import { ImagePicker, Permissions, Constants } from 'expo';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -128,7 +127,6 @@ class ListToilet extends Component {
                                         <Rating
                                             type="star"
                                             ratingCount={5}
-                                            // fractions={2}
                                             startingValue={`${item.rate}`}
                                             imageSize={20}
                                             onFinishRating={this.ratingCompleted}
