@@ -20,6 +20,7 @@ import ListToiletScreen from './screens/ListToilet';
 import LogoutScreen from './screens/Logout';
 import styles from './stylesheet/style';
 //import Test from './screens/Test';
+import UploadImage from './screens/Upload';
 
 export default class App extends React.Component {
 
@@ -72,8 +73,9 @@ export default class App extends React.Component {
       return (
         <Provider store = {this.store}>
           <View style = {styles.container_default}>
-            <MainNavigator/>
+            {/* <MainNavigator/> */}
             {/* <ListToiletScreen/> */}
+            <UploadImage/>
           </View>
         </Provider>
       );
