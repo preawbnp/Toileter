@@ -9,6 +9,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
 import { Ionicons } from '@expo/vector-icons'
 import { Rating } from 'react-native-elements';
+// import { ImagePicker, Permissions, Constants } from 'expo';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -25,7 +26,7 @@ class ListToilet extends Component {
 
     constructor(props){
         super(props);
-    
+
         this.state = {
           data: [],
           modalVisible: false,
@@ -102,8 +103,9 @@ class ListToilet extends Component {
                 <Header style={{color: '#444444'}}>
                     <Title style={{marginTop: 10, fontSize: 20}}>TOILETER</Title>
                 </Header>
-
+            
                 <Content style={{backgroundColor: '#ffffff'}}>
+                    
                     <List dataArray = { this.state.data }
                         renderRow = { (item) =>
                             <ListItem>
@@ -157,7 +159,7 @@ class ListToilet extends Component {
                         }>
                     </List>
 
-                    <Modal
+                <Modal
                     animationType="none" //slide
                     transparent={false}
                     visible={this.state.modalVisible}
@@ -167,9 +169,10 @@ class ListToilet extends Component {
                 <View style={{marginTop: 25}}>
                     <View>
                         <Toolbar title="ADD ITEM"/>
-                        
+
                         <View style={styles.input_group}>
-                        <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20}}>
+
+                        <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20, marginTop: 20}}>
                                 <Text style={styles.textModalStyle}>Your location</Text>
                                 <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
                                 <Text style={styles.textModalReviewStyle}>latitude, longitude</Text>
@@ -229,6 +232,7 @@ class ListToilet extends Component {
 
                         {/* Button */}
                         <View style={styles.btn_group}>
+                        
                         <TouchableHighlight
                             onPress={() => {
                                 this.itemsRef.push({
@@ -239,6 +243,7 @@ class ListToilet extends Component {
                                     isDisabled: this.state.isDisabled,
                                     isFee: this.state.isFee,
                                     isSprayHose: this.state.isSprayHose,
+                                    // image: this.state.image,
                                 });
                                 this.setModalVisible(!this.state.modalVisible);
                             }}>
@@ -270,4 +275,3 @@ class ListToilet extends Component {
     }
 }
 export default ListToilet;
-

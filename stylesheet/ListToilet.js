@@ -51,6 +51,15 @@ export default StyleSheet.create({
         width: 150,
         height: 45,
     },
+    image_btn: {
+        justifyContent: 'center',
+        backgroundColor: 'lightgray',
+        // color: 'blue',
+        alignSelf: 'center',
+        alignItems: 'center',
+        width: 150,
+        height: 45,
+    },
     btn_text: {
         fontSize: 18,
         padding: 5,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, StatusBar } from 'react-native';
+import { AppRegistry, Text, View, StatusBar, Button } from 'react-native';
 import styles from '../../stylesheet/component/Toolbar';
 // const styles = require('../../stylesheet/Toolbar');
 
