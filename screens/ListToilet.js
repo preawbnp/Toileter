@@ -158,7 +158,7 @@ class ListToilet extends Component {
                     </List>
 
                     <Modal
-                    animationType="slide"
+                    animationType="none" //slide
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => {}}
@@ -240,9 +240,6 @@ class ListToilet extends Component {
                                     isFee: this.state.isFee,
                                     isSprayHose: this.state.isSprayHose,
                                 });
-                                alert("Toilet Added!")
-                                this.setState({title: '', latitude: '', longitude: '', 
-                                rate: '', isDisabled: '', isFee: '', isSprayHose: ''})
                                 this.setModalVisible(!this.state.modalVisible);
                             }}>
                             <View style={styles.save_btn}>
