@@ -51,6 +51,15 @@ export default StyleSheet.create({
         width: 150,
         height: 45,
     },
+    image_btn: {
+        justifyContent: 'center',
+        backgroundColor: 'lightgray',
+        // color: 'blue',
+        alignSelf: 'center',
+        alignItems: 'center',
+        width: 150,
+        height: 45,
+    },
     btn_text: {
         fontSize: 18,
         padding: 5,
@@ -82,5 +91,17 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: -10,
+    },
+    image_btn: {
+        justifyContent: 'center',
+        backgroundColor: 'lightgray',
+        alignSelf: 'center',
+        alignItems: 'center',
+        width: 150,
+        height: 45,
+    },
+    textModalImageStyle: {
+        color: '#585858', 
+        fontSize: 8
     },
 })
