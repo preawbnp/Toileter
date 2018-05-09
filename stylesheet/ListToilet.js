@@ -100,4 +100,8 @@ export default StyleSheet.create({
         width: 150,
         height: 45,
     },
+    textModalImageStyle: {
+        color: '#585858', 
+        fontSize: 8
+    },
 })

@@ -107,13 +107,9 @@ class ListToilet extends Component {
         
         if(!result.cancelled) {
             this.setState({ image: result.uri })
+            this.uploadImage( this.state.image, this.state.title );
+            
             this.setModalVisible(true);
-            // .then(() => {
-
-            // })
-            // .then((error) => {
-
-            // })
         }
     }
 
@@ -122,7 +118,6 @@ class ListToilet extends Component {
         const blob = await response.blob();
 
         var ref = this.getStorage().child("toilet-images/" + imageName)
-        // this.image = uri;
         return ref.put(blob);
     }
 
@@ -144,7 +139,12 @@ class ListToilet extends Component {
                                             <Text style={styles.titleStyle}>{`${item.title}`}</Text>
                                         </Left>
                                         <Right>
-                                            <Button transparent danger onPress={() => {this.itemsRef.child(item._key).remove()}}>
+                                            <Button transparent danger 
+                                                onPress={() => {
+                                                    this.itemsRef.child(item._key).remove()
+                                                    alert("Removed!");
+                                                    }
+                                                }>
                                                 <Icon active name='close'/>
                                             </Button>
                                         </Right>
@@ -207,9 +207,12 @@ class ListToilet extends Component {
                             </View>
                         </TouchableHighlight>
 
+                        <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 0, marginTop: 20}}>
+                            <Text style={styles.textModalImageStyle}>{this.state.image}</Text>
+                        </View>
+
                         <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20, marginTop: 20}}>
                             
-                                <Text style={styles.textModalLocationStyle}>{this.state.image}</Text>
 
                                 <Text style={styles.textModalStyle}>Your location</Text>
                                 <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
@@ -240,7 +243,7 @@ class ListToilet extends Component {
                             <TextInput
                                 style = {styles.input}
                                 value = {this.state.rate}
-                                placeholder="Enter rate 1(dirty) to 5(excellent)"
+                                placeholder="Enter rate 1(Dirty) to 5(Excellent)"
                                 keyboardType={'numeric'}
                                 onChangeText = {(value) => this.setState({rate: value})}
                             />
@@ -248,21 +251,21 @@ class ListToilet extends Component {
                             <TextInput
                                 style = {styles.input}
                                 value = {this.state.isDisabled}
-                                placeholder="Have a disabled? : true or false"
+                                placeholder="Have a disabled? : True or False"
                                 onChangeText = {(value) => this.setState({isDisabled: value})}
                            />
 
                             <TextInput
                                 style = {styles.input}
                                 value = {this.state.isSprayHose}
-                                placeholder="Have a spray hose? : true or false"
+                                placeholder="Have a spray hose? : True or False"
                                 onChangeText = {(value) => this.setState({isSprayHose: value})}
                             />
 
                             <TextInput
                                 style = {styles.input}
                                 value = {this.state.isFee}
-                                placeholder="Have to pay to use? : true or false"
+                                placeholder="Have to pay to use? : True or False"
                                 onChangeText = {(value) => this.setState({isFee: value})}
                             />
                             
