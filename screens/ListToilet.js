@@ -9,6 +9,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail,
     Text, Button, Icon, Left, Body, Right, List, ListItem, Title } from 'native-base';
 import { Ionicons } from '@expo/vector-icons'
 import { Rating } from 'react-native-elements';
+import { ImagePicker, Permissions, Constants } from 'expo';
 
 class ListToilet extends Component { 
     static navigationOptions = {
@@ -52,6 +53,10 @@ class ListToilet extends Component {
         return firebase.database().ref();
     }
     
+    getStorage(){
+        return firebase.storage().ref();
+    }
+
     componentDidMount(){
         this.getItems(this.itemsRef);
 
@@ -94,6 +99,31 @@ class ListToilet extends Component {
 
     addItem() {
         this.setModalVisible(true);
+    }
+
+    onChooseImagePress = async () => {
+        this.setModalVisible(false);
+        let result = await ImagePicker.launchImageLibraryAsync();
+        
+        if(!result.cancelled) {
+            this.setState({ image: result.uri })
+            this.setModalVisible(true);
+            // .then(() => {
+
+            // })
+            // .then((error) => {
+
+            // })
+        }
+    }
+
+    uploadImage = async(uri, imageName) => {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+
+        var ref = this.getStorage().child("toilet-images/" + imageName)
+        // this.image = uri;
+        return ref.put(blob);
     }
 
     render() {
@@ -170,7 +200,17 @@ class ListToilet extends Component {
 
                         <View style={styles.input_group}>
 
+                        <TouchableHighlight
+                            onPress={this.onChooseImagePress}>
+                            <View style={styles.image_btn}>
+                                <Text style={styles.btn_text}>Libary</Text>
+                            </View>
+                        </TouchableHighlight>
+
                         <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 20, marginTop: 20}}>
+                            
+                                <Text style={styles.textModalLocationStyle}>{this.state.image}</Text>
+
                                 <Text style={styles.textModalStyle}>Your location</Text>
                                 <Text style={styles.textModalLocationStyle}>( {this.state.userLatitude}, {this.state.userLongitude} )</Text>
                                 <Text style={styles.textModalReviewStyle}>latitude, longitude</Text>
@@ -241,7 +281,7 @@ class ListToilet extends Component {
                                     isDisabled: this.state.isDisabled,
                                     isFee: this.state.isFee,
                                     isSprayHose: this.state.isSprayHose,
-                                    // image: this.state.image,
+                                    image: this.state.image,
                                 });
                                 this.setModalVisible(!this.state.modalVisible);
                             }}>

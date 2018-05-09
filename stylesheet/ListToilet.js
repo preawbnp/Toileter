@@ -92,4 +92,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginTop: -10,
     },
+    image_btn: {
+        justifyContent: 'center',
+        backgroundColor: 'lightgray',
+        alignSelf: 'center',
+        alignItems: 'center',
+        width: 150,
+        height: 45,
+    },
 })
