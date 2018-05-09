@@ -142,7 +142,6 @@ class ListToilet extends Component {
                                             <Button transparent danger 
                                                 onPress={() => {
                                                     this.itemsRef.child(item._key).remove()
-                                                    alert("Removed!");
                                                     }
                                                 }>
                                                 <Icon active name='close'/>
@@ -287,6 +286,8 @@ class ListToilet extends Component {
                                     image: this.state.image,
                                 });
                                 this.setModalVisible(!this.state.modalVisible);
+                                this.setState({title: '', latitude: '', longitude: '', 
+                                rate: '', isDisabled: '', isFee: '', isSprayHose: ''})
                             }}>
                             <View style={styles.save_btn}>
                                 <Text style={styles.btn_text}>Save</Text>
