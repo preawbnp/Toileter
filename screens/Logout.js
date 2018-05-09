@@ -3,7 +3,8 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { logoutUser } from '../actions';
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons';
+import styles from '../stylesheet/Logout';
 
 class Logout extends Component {
 
@@ -22,28 +23,21 @@ class Logout extends Component {
 
   render() {
     return (
-      <View style={styles.overviewContainer}>
-        <View>
+      <View style={styles.logoutContainer}>
+        <View style={styles.textContainer}>
+          <Text style={styles.textStyle}>Are you sure to logout?</Text>
         </View>
-        <View>
-          <Button
-            large
+        
+        <View style={styles.buttonContainer}>
+          <Button style={styles.logoutBtn}
             title="Log out"
-            backgroundColor="#00aced"
+            backgroundColor="#74DAFF"
             icon={{ type: 'font-awesome', color: "#ffffff", name: 'sign-out' }}
             onPress={ () => this.props.logoutUser()  }
           />
         </View>
       </View>
     );
-  }
-}
-
-const styles = {
-  overviewContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center'
   }
 }
 
